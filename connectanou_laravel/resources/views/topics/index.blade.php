@@ -4,6 +4,8 @@
 @section('content')
     <div class="container">
         <div class="list-group">
+            <h1 class="mx-auto">Forum</h1>
+            <p></p>
             @foreach ($topics as $topic )                
                     <div class="list-group-item">
                         <h4><a href="{{ route('topics.show',$topic)}}">{{ $topic->title }}</a></h4>

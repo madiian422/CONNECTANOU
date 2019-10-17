@@ -36,8 +36,4 @@ class ContactController extends Controller
 
         return redirect('contact');
     }
-     public function  mentionlegal()
-    {
-        return view('mentionlegal');
-    }
 }

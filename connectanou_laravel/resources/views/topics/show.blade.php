@@ -19,60 +19,66 @@
         <h1></h1>
         <div class="card">
             <div class="card-body">
-            <h5 class="card-title">{{$topic->title}}</h5>
+            <h3 class="card-title"><strong>{{$topic->title}}</strong></h3>
             <p>{{$topic->content}}</p>
-            <div class="d-flex justify-content-between align-items-center ">
+            <div class=" align-items-center ">
                 <small>
                     Posté le {{ $topic->created_at->format('d/m/y ')  }}
                 </small>  
-                <span class="badge badge-primary">{{$topic->user->name }}</span>
-
-                </div>
-                <div class="d-flex justify-content-between align-items-center mt-3">
-                    {{--le token @can permet de cacher les boutons mais ne supprime pas la route /edit --}}
-                    @can('update', $topic)
-                    <a href="{{ route('topics.edit',$topic) }}" class="btn btn-warning">Editer ce topic</a>   
-                    @endcan
                 
-                     @can('delete', $topic)
+            </div>
+            <div class=" align-items-center ">
+                   
+                   <p> Par : 
+                       <small class="badge badge-primary">{{$topic->user->name }}</small>
+                   </p>
+                </div>
+                
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                    {{--le token @can permet de cacher les boutons mais ne supprime pas la route /edit --}}
+                @can('update', $topic)
+                    <a href="{{ route('topics.edit',$topic) }}" class="btn btn-warning">Editer ce topic</a>   
+                @endcan
+                
+                @can('delete', $topic)
                     <form action="{{ route('topics.destroy', $topic )}}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Supprimer</button>
                     </form>     
-                     @endcan              
+                @endcan              
+            </div>
+        </div>
+    </div>
+    <hr>
+        
+    <h5>Commentaires</h5>
+        
+        {{-- recupere les informations et affiche les commentaires dans un espace dédié sinon affiche le message dans le token @empty --}}
+    @forelse ($topic->comments as $comment)
+        <div class="card mb-2">
+            <div class="card-body">
+                {{$comment->content}}
+                <div class="d-flex justify-content-between align-items-center">
+                    <small>
+                        Posté le {{ $comment->created_at->format('d/m/y')  }}
+                    </small>  
+                    <span class="badge badge-primary">{{$comment->user->name }}</span>
                 </div>
             </div>
         </div>
-        <hr>
-        
-        <h5>Commentaires</h5>
-        
-        {{-- recupere les informations et affiche les commentaires dans un espace dédié sinon affiche le message dans le token @empty --}}
-        @forelse ($topic->comments as $comment)
-            <div class="card mb-2">
+        @foreach ($comment->comments as $replyComment)
+            <div class="card mb-2 ml-5">
                 <div class="card-body">
-                    {{$comment->content}}
+                    {{$replyComment->content}}
                     <div class="d-flex justify-content-between align-items-center">
                         <small>
-                            Posté le {{ $comment->created_at->format('d/m/y')  }}
+                            Posté le {{ $replyComment->created_at->format('d/m/y')  }}
                         </small>  
-                        <span class="badge badge-primary">{{$comment->user->name }}</span>
+                        <span class="badge badge-primary">{{$replyComment->user->name }}</span>
                     </div>
                 </div>
             </div>
-            @foreach ($comment->comments as $replyComment)
-                <div class="card mb-2 ml-5">
-                    <div class="card-body">
-                        {{$replyComment->content}}
-                        <div class="d-flex justify-content-between align-items-center">
-                            <small>
-                                Posté le {{ $replyComment->created_at->format('d/m/y')  }}
-                            </small>  
-                            <span class="badge badge-primary">{{$replyComment->user->name }}</span>
-                        </div>
-                    </div>
-                </div>
             @endforeach
             @auth
             <button class="btn btn-info mb-3 " onclick="toggleReplyComment({{$comment->id}}) ">Répondre</button>

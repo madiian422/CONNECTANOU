@@ -15,6 +15,7 @@
 // php artisan route:list
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\DepotController;
 use App\Http\Controllers\TopicController;
 use App\Topic;
 
@@ -66,7 +67,7 @@ Route::resource('clients','ClientsController');
 // on peut nommer nos routes à l'aide de ->name('')
 Route::get('contact','ContactController@create');
 Route::post('contact','ContactController@store');
-Route::get('mentionlegal','ContactController@mentionlegal');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -90,3 +91,10 @@ route::post ('/comments/{topic}','CommentController@store')->name('comments.stor
 
 // cette route permet de définir ou l'on posté cette réponse au commentaire en fonction de son id
 Route::post('/commentReply/{comment}','CommentController@storeCommentReply')->name('comments.storeReply');
+
+
+// route pour le dêpot de projets
+
+Route::get('depot','ProjetController@create')->name('depot.create');
+
+Route::post('depot','ProjetController@store');

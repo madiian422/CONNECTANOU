@@ -4,11 +4,11 @@
 @section('content')
     
 
-	<section class="text-justify" >
+	<section class="py-5  mt-5 text-justify" >
             <div class="container text-justify" ><br><br>
     
              <h1 style="text-align: center;">Vous êtes un porteur de projet ?</h1><br><br>
-            <img src="{{ asset('img/landing_por.png')}}"  style="margin-left:110px" class="col-md-10 col-lg-10 col-sm-10 col-xs-10"><br><br>
+            <img src="{{ asset('img/landing_por.png')}}"  style="align-items: center;" class="col-md-10 col-lg-10 col-sm-10 col-xs-10"><br><br>
             <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                 <FONT size="4pt"> 
                     <p>Vous avez un projet ? Vous avez une super idée ? 

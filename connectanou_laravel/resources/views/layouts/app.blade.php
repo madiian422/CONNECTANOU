@@ -42,18 +42,70 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="/ConnectanouLaravel/public/"><strong>Accueil</strong></a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link active" href="/ConnectanouLaravel/public/realisateur"><strong>Réalisateur</strong></a>
-                    </li>
-                    <li class="nav-item">
+                    </li> --}}
+                    <li class="nav-item dropdown">
+                                
+                            <a id="navbarDropdown" class="nav-link active dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <strong>Réalisateur</strong> <span class="caret"></span>
+                            </a>
+                        
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="nav-link active" href="/ConnectanouLaravel/public/realisateur"><strong>Réalisateur</strong></a>
+                            <a class="nav-link active" href="{{route('depot.create')}}"><strong>Rechercher une annonce</strong></a>
+                               
+    
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    {{-- <li class="nav-item">
                         <a class="nav-link active" href="/ConnectanouLaravel/public/porteur"><strong>Porteur de projet</strong></a>
-                    </li>
+                    </li> --}}
+                    <li class="nav-item dropdown">
+                                
+                            <a id="navbarDropdown" class="nav-link active dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <strong>Porteur de projet</strong> <span class="caret"></span>
+                            </a>
+                        
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="nav-link active" href="/ConnectanouLaravel/public/porteur"><strong>Porteur de projet</strong></a>
+                            <a class="nav-link active" href="{{route('depot.create')}}"><strong>Déposer une annonce</strong></a>
+                               
+    
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="/ConnectanouLaravel/public/a-propos"><strong>L'association</strong></a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item dropdown">
+                                
+                        <a id="navbarDropdown" class="nav-link active dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <strong>Forum</strong> <span class="caret"></span>
+                        </a>
+                        
+                            
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
                         <a class="nav-link active" href="/ConnectanouLaravel/public/topics"><strong>Forum</strong></a>
+                        <a href="{{route('topics.create')}}" class="dropdown-item"><strong>Créer un sujet</strong></a>
+                           
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
                     </li>
+                    {{-- <li class="nav-item">
+                        <a class="nav-link active" href="/ConnectanouLaravel/public/topics"><strong>Forum</strong></a>
+                        
+                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link active" href="/ConnectanouLaravel/public/contact"><strong>Contact</strong></a>
                     </li>
@@ -84,7 +136,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a href="{{route('topics.create')}}" class="dropdown-item">Créer un sujet</a>
+                                {{-- <a href="{{route('topics.create')}}" class="dropdown-item">Créer un sujet</a> --}}
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -108,7 +160,7 @@
             </div>
         </nav>
         
-        <main class="container">
+        <main class="py-4 container">
               {{-- le contenu des autres pages en dessous de la nav bar 
                 à chaque fois que une page hérite de ce layout, le contenu de la page ira dans 'content'
                 --}}
@@ -121,19 +173,10 @@
         </main>
 
         {{-- footer --}}
-        <footer class="border-top bg-light">
-             <div class="container text-center">
-        <div class="icone"><br>
-        <a href="https://www.linkedin.com/company/connectanou/"><img src="{{ asset('img/iconelinkedin.png')}}"  width="40px" height="40px"></a>
-        <a href="https://www.facebook.com/connectanou/"><img src="{{ asset('img/iconefacebook.png')}}" width="40px" height="40px"></a>
-
-    </div>
-    <div class="mentionLegal">
-        <a href="/ConnectanouLaravel/public/contact">Contact</a>
-        <a href="/ConnectanouLaravel/public/mentionlegal">Mentions légales</a></div>
-    </div>
+        {{-- <footer class=" bg-primary fixed-bottom pb-5">
+            <p class="">ceci est le footer du site</p>
         
-        </footer>
+        </footer> --}}
 
     </div>
 </body>
